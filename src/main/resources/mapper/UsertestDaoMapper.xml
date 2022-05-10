@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.goldwiond.ep.datatransfer.dao.UsertestDao">
+
+  <resultMap id="BaseResultMap" type="com.goldwiond.ep.datatransfer.dao.Usertest">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="name" jdbcType="VARCHAR" property="name" />
+    <result column="address" jdbcType="CHAR" property="address" />
+    <result column="salary" jdbcType="REAL" property="salary" />
+  </resultMap>
+
+  <sql id="Base_Column_List">
+    id, "name", address, salary
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from "usertest"
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from "usertest"
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" keyColumn="id" keyProperty="id" parameterType="com.goldwiond.ep.datatransfer.dao.Usertest" useGeneratedKeys="true">
+    insert into "usertest" ("name", address, salary
+      )
+    values ( #{name,jdbcType=VARCHAR}, #{address,jdbcType=CHAR}, #{salary,jdbcType=REAL}
+      )
+  </insert>
+  <insert id="insertSelective" keyColumn="id" keyProperty="id" parameterType="com.goldwiond.ep.datatransfer.dao.Usertest" useGeneratedKeys="true">
+    insert into "usertest"
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="name != null">
+        "name",
+      </if>
+      <if test="address != null">
+        address,
+      </if>
+      <if test="salary != null">
+        salary,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="name != null">
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="address != null">
+        #{address,jdbcType=CHAR},
+      </if>
+      <if test="salary != null">
+        #{salary,jdbcType=REAL},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.goldwiond.ep.datatransfer.dao.Usertest">
+    update "usertest"
+    <set>
+      <if test="name != null">
+        "name" = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="address != null">
+        address = #{address,jdbcType=CHAR},
+      </if>
+      <if test="salary != null">
+        salary = #{salary,jdbcType=REAL},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.goldwiond.ep.datatransfer.dao.Usertest">
+    update "usertest"
+    set "name" = #{name,jdbcType=VARCHAR},
+      address = #{address,jdbcType=CHAR},
+      salary = #{salary,jdbcType=REAL}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

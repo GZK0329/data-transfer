@@ -1,0 +1,168 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.goldwiond.ep.datatransfer.dao.PgTest">
+
+  <resultMap id="BaseResultMap" type="com.goldwiond.ep.datatransfer.dao.Usertest">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="name" jdbcType="VARCHAR" property="name" />
+    <result column="address" jdbcType="CHAR" property="address" />
+    <result column="salary" jdbcType="REAL" property="salary" />
+  </resultMap>
+
+  <select id = "count" resultType="int">
+    select count (*) from realtimedata_4;
+  </select>
+    
+   <select id="queryCommon" resultType="com.goldwiond.ep.datatransfer.entity.QueryEntity">
+       SELECT wtid, COUNT(#{randColumn1}) as count, avg("${randColumn2}"::float) as avg, sum("${randColumn3}"::float) as sum, max("${randColumn4}") as max, min("${randColumn5}") as min
+        FROM realtimedata_0
+        WHERE  wtid in
+           <foreach collection="wtids" item="wtid" index="index" open="(" close=")" separator=",">
+               #{wtid}
+           </foreach>
+        AND "WTUR.Tm.Rw.Dt" >= #{localDateTime1}
+        AND "WTUR.Tm.Rw.Dt" &lt;  #{localDateTime2}
+        GROUP BY wtid;
+    </select>
+
+    <select id="queryCommon0" resultType="com.goldwiond.ep.datatransfer.entity.QueryEntity">
+        SELECT wtid, COUNT(#{randColumn1}) as count, avg("${randColumn2}"::float) as avg, sum("${randColumn3}"::float) as sum, max("${randColumn4}") as max, min("${randColumn5}") as min
+        FROM realtimedata_0
+        WHERE  wtid in
+        <foreach collection="wtids" item="wtid" index="index" open="(" close=")" separator=",">
+            #{wtid}
+        </foreach>
+        AND "WTUR.Tm.Rw.Dt" >= #{localDateTime1}
+        AND "WTUR.Tm.Rw.Dt" &lt;  #{localDateTime2}
+        GROUP BY wtid;
+    </select>
+
+    <select id="queryCommon4" resultType="com.goldwiond.ep.datatransfer.entity.QueryEntity">
+        SELECT wtid, COUNT(#{randColumn1}) as count, avg("${randColumn2}"::float) as avg, sum("${randColumn3}"::float) as sum, max("${randColumn4}") as max, min("${randColumn5}") as min
+        FROM realtimedata_4
+        WHERE  wtid in
+        <foreach collection="wtids" item="wtid" index="index" open="(" close=")" separator=",">
+            #{wtid}
+        </foreach>
+        AND "WTUR.Tm.Rw.Dt" >= #{localDateTime1}
+        AND "WTUR.Tm.Rw.Dt" &lt;  #{localDateTime2}
+        GROUP BY wtid;
+    </select>
+
+    <select id="queryCommon6" resultType="com.goldwiond.ep.datatransfer.entity.QueryEntity">
+        SELECT wtid, COUNT(#{randColumn1}) as count, avg("${randColumn2}"::float) as avg, sum("${randColumn3}"::float) as sum, max("${randColumn4}") as max, min("${randColumn5}") as min
+        FROM realtimedata_6
+        WHERE  wtid in
+        <foreach collection="wtids" item="wtid" index="index" open="(" close=")" separator=",">
+            #{wtid}
+        </foreach>
+        AND "WTUR.Tm.Rw.Dt" >= #{localDateTime1}
+        AND "WTUR.Tm.Rw.Dt" &lt;  #{localDateTime2}
+        GROUP BY wtid;
+    </select>
+
+    <select id="queryCommon1000" resultType="com.goldwiond.ep.datatransfer.entity.QueryEntity">
+        SELECT wtid, COUNT(#{randColumn1}) as count, avg("${randColumn2}"::float) as avg, sum("${randColumn3}"::float) as sum, max("${randColumn4}") as max, min("${randColumn5}") as min
+        FROM realtimedata_1000
+        WHERE  wtid in
+        <foreach collection="wtids" item="wtid" index="index" open="(" close=")" separator=",">
+            #{wtid}
+        </foreach>
+        AND "WTUR.Tm.Rw.Dt" >= #{localDateTime1}
+        AND "WTUR.Tm.Rw.Dt" &lt;  #{localDateTime2}
+        GROUP BY wtid;
+    </select>
+
+    <select id="queryCommonStatistic0" resultType="com.goldwiond.ep.datatransfer.entity.QueryEntity">
+        SELECT wtid, COUNT(#{randColumn1}) as count, avg("${randColumn2}"::float) as avg, sum("${randColumn3}"::float) as sum, max("${randColumn4}") as max, min("${randColumn5}") as min
+        FROM statisticdata_0
+        WHERE  wtid in
+        <foreach collection="wtids" item="wtid" index="index" open="(" close=")" separator=",">
+            #{wtid}
+        </foreach>
+        AND rectime >= #{localDateTime1}
+        AND rectime &lt;  #{localDateTime2}
+        GROUP BY wtid;
+    </select>
+
+    <select id="queryCommonStatistic3" resultType="com.goldwiond.ep.datatransfer.entity.QueryEntity">
+        SELECT wtid, COUNT(#{randColumn1}) as count, avg("${randColumn2}"::float) as avg, sum("${randColumn3}"::float) as sum, max("${randColumn4}") as max, min("${randColumn5}") as min
+        FROM statisticdata_3
+        WHERE  wtid in
+        <foreach collection="wtids" item="wtid" index="index" open="(" close=")" separator=",">
+            #{wtid}
+        </foreach>
+        AND rectime >= #{localDateTime1}
+        AND rectime &lt;  #{localDateTime2}
+        GROUP BY wtid;
+    </select>
+
+    <select id="queryCommonStatistic4" resultType="com.goldwiond.ep.datatransfer.entity.QueryEntity">
+        SELECT wtid, COUNT(#{randColumn1}) as count, avg("${randColumn2}"::float) as avg, sum("${randColumn3}"::float) as sum, max("${randColumn4}") as max, min("${randColumn5}") as min
+        FROM statisticdata_4
+        WHERE  wtid in
+        <foreach collection="wtids" item="wtid" index="index" open="(" close=")" separator=",">
+            #{wtid}
+        </foreach>
+        AND rectime >= #{localDateTime1}
+        AND rectime &lt;  #{localDateTime2}
+        GROUP BY wtid;
+    </select>
+
+    <select id="querySampling0" resultType="com.goldwiond.ep.datatransfer.entity.QueryEntity">
+        SELECT wtid, time_bucket('5 minutes', "WTUR.Tm.Rw.Dt") tb ,COUNT(#{randColumn1}) as count, avg("${randColumn2}"::float) as avg, sum("${randColumn3}"::float) as sum, max("${randColumn4}") as max, min("${randColumn5}") as min
+        FROM realtimedata_0
+        WHERE  wtid in
+        <foreach collection="wtids" item="wtid" index="index" open="(" close=")" separator=",">
+            #{wtid}
+        </foreach>
+        AND "WTUR.Tm.Rw.Dt" >= #{localDateTime1}
+        AND "WTUR.Tm.Rw.Dt" &lt;  #{localDateTime2}
+        GROUP BY wtid, tb
+        ORDER BY wtid, tb;
+    </select>
+
+    <select id="querySampling4" resultType="com.goldwiond.ep.datatransfer.entity.QueryEntity">
+        SELECT wtid, time_bucket('5 minutes', "WTUR.Tm.Rw.Dt") tb ,COUNT(#{randColumn1}) as count, avg("${randColumn2}"::float) as avg, sum("${randColumn3}"::float) as sum, max("${randColumn4}") as max, min("${randColumn5}") as min
+        FROM realtimedata_4
+        WHERE  wtid in
+        <foreach collection="wtids" item="wtid" index="index" open="(" close=")" separator=",">
+            #{wtid}
+        </foreach>
+        AND "WTUR.Tm.Rw.Dt" >= #{localDateTime1}
+        AND "WTUR.Tm.Rw.Dt" &lt;  #{localDateTime2}
+        GROUP BY wtid, tb
+        ORDER BY wtid, tb;
+    </select>
+
+    <select id="querySampling6" resultType="com.goldwiond.ep.datatransfer.entity.QueryEntity">
+        SELECT wtid, time_bucket('5 minutes', "WTUR.Tm.Rw.Dt") tb ,COUNT(#{randColumn1}) as count, avg("${randColumn2}"::float) as avg, sum("${randColumn3}"::float) as sum, max("${randColumn4}") as max, min("${randColumn5}") as min
+        FROM realtimedata_6
+        WHERE  wtid in
+        <foreach collection="wtids" item="wtid" index="index" open="(" close=")" separator=",">
+            #{wtid}
+        </foreach>
+        AND "WTUR.Tm.Rw.Dt" >= #{localDateTime1}
+        AND "WTUR.Tm.Rw.Dt" &lt;  #{localDateTime2}
+        GROUP BY wtid, tb
+        ORDER BY wtid, tb;
+    </select>
+
+    <select id="querySampling1000" resultType="com.goldwiond.ep.datatransfer.entity.QueryEntity">
+        SELECT wtid, time_bucket('5 minutes', "WTUR.Tm.Rw.Dt") tb ,COUNT(#{randColumn1}) as count, avg("${randColumn2}"::float) as avg, sum("${randColumn3}"::float) as sum, max("${randColumn4}") as max, min("${randColumn5}") as min
+        FROM realtimedata_1000
+        WHERE  wtid in
+        <foreach collection="wtids" item="wtid" index="index" open="(" close=")" separator=",">
+            #{wtid}
+        </foreach>
+        AND "WTUR.Tm.Rw.Dt" >= #{localDateTime1}
+        AND "WTUR.Tm.Rw.Dt" &lt;  #{localDateTime2}
+        GROUP BY wtid, tb
+        ORDER BY wtid, tb;
+    </select>
+
+    <select id="test">
+        select * from realtimedata_0 limit 10;
+    </select>
+</mapper>

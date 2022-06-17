@@ -1,3 +1,3 @@
 Manifest-Version: 1.0
-Main-Class: com.goldwiond.ep.datatransfer.demo.ThreadDemo
+Main-Class: com.goldwiond.ep.datatransfer.util.ThreadDemo
 

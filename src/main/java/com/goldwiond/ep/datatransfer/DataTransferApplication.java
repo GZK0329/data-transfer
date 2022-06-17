@@ -1,16 +1,9 @@
 package com.goldwiond.ep.datatransfer;
 
-import com.goldwiond.ep.datatransfer.service.DataHandler;
-//import com.goldwiond.ep.datatransfer.service.ServerThread;
-import com.goldwiond.ep.datatransfer.service.socket.SocketServer;
 import org.mybatis.spring.annotation.MapperScan;
-import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.context.annotation.ComponentScan;
 
-import java.net.ServerSocket;
-import java.net.Socket;
 
 @SpringBootApplication
 @MapperScan({"com.goldwiond.ep.datatransfer.dao"})
